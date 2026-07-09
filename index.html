@@ -3,243 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Revenue is Vanity - Exclusive Live Webinar with Flora Mutahi</title>
+    <title>Revenue Is Vanity - Live Masterclass</title>
     <style>
         :root {
-            --pale-red: #FF9CA9;
-            --pale-orange: #FFDAB7;
-            --desaturated-red: #9A6C6A;
-            --dark-gray: #252525;
-            --light-bg: #FCFAF9;
-            --rose-gold-gradient: linear-gradient(135deg, #FFDAB7 0%, #FF9CA9 100%);
+            /* Flora Brand Guidelines.jpg Colors */
+            --flora-pale-red: #FF9CA9;
+            --flora-pale-orange: #FFDAB7;
+            --flora-desaturated-dark-red: #9A6C6A;
+            --flora-dark-gray: #252525;
+            
+            /* UI Mapping */
+            --bg-color: #FFFFFF;
+            --text-main: var(--flora-dark-gray);
+            --text-muted: #666666;
+            --accent-primary: var(--flora-desaturated-dark-red);
+            --accent-secondary: var(--flora-pale-orange);
+            
+            /* Gradient defined in Flora Brand Guidelines.jpg */
+            --rose-gold-gradient: linear-gradient(180deg, #FFDAB7 0%, #FF9CA9 100%);
         }
-        
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
-        body { background-color: var(--light-bg); color: var(--dark-gray); line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; }
-        
-        /* Top Banner Countdown Timer */
-        .timer-banner {
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .header-gradient-bar {
+            width: 80px;
+            height: 8px;
             background: var(--rose-gold-gradient);
-            color: var(--dark-gray);
-            text-align: center;
-            padding: 12px 20px;
-            font-weight: 700;
-            font-size: 1rem;
-            letter-spacing: 0.5px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-        .timer-display {
-            font-family: monospace;
-            background: rgba(255, 255, 255, 0.6);
-            padding: 4px 12px;
             border-radius: 4px;
-            font-size: 1.1rem;
+            margin: 0 auto 20px auto;
         }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; flex: 1; }
-        
-        header { text-align: center; padding: 30px 20px; }
-        .tagline { color: var(--desaturated-red); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 15px; }
-        h1 { font-size: 2.8rem; color: var(--dark-gray); line-height: 1.25; margin-bottom: 20px; font-weight: 800; }
-        
-        .grid { display: grid; grid-template-columns: 1fr; gap: 40px; margin-top: 20px; }
-        @media (min-width: 768px) { .grid { grid-template-columns: 1.2fr 0.8fr; } }
-        
-        /* Video Container */
-        .video-box { background: #000; border-radius: 12px; overflow: hidden; box-shadow: 0 15px 35px rgba(37, 37, 37, 0.1); position: relative; padding-top: 56.25%; border: 1px solid rgba(154, 108, 106, 0.2); }
-        .video-box video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
-        
-        /* Capture Form Container */
-        .form-box { background: #fff; padding: 35px; border-radius: 12px; box-shadow: 0 15px 40px rgba(0,0,0,0.04); border-top: 5px solid var(--desaturated-red); height: fit-content; }
-        h3 { font-size: 1.4rem; margin-bottom: 20px; color: var(--dark-gray); font-weight: 700; }
-        
-        input[type="text"], input[type="email"] { width: 100%; padding: 14px; margin-bottom: 18px; border: 1px solid #E5DFDA; border-radius: 6px; font-size: 1rem; color: var(--dark-gray); background-color: #FAF8F6; transition: border 0.3s; }
-        input:focus { outline: none; border-color: var(--desaturated-red); background-color: #fff; }
-        
-        /* Rose Gold Premium Button */
-        button { width: 100%; background: var(--rose-gold-gradient); color: var(--dark-gray); border: none; padding: 16px; font-size: 1.1rem; font-weight: 700; border-radius: 6px; cursor: pointer; transition: opacity 0.3s, transform 0.2s; box-shadow: 0 4px 15px rgba(255, 156, 169, 0.3); }
-        button:hover { opacity: 0.95; transform: translateY(-1px); }
-        button:active { transform: translateY(1px); }
-        
-        .meta-info { font-size: 0.9rem; color: #666; margin-top: 20px; padding-top: 15px; border-top: 1px solid #F0EAE5; text-align: center; }
-        #status-message { margin-top: 15px; text-align: center; font-weight: 600; font-size: 0.95rem; color: #2E7D32; }
-
-        /* What You Will Learn Section */
-        .learn-section { margin-top: 80px; padding-top: 50px; border-top: 1px solid #E5DFDA; margin-bottom: 40px; }
-        .learn-section h2 { text-align: center; font-size: 2.2rem; color: var(--dark-gray); margin-bottom: 40px; font-weight: 800; }
-        
-        .learn-grid { display: grid; grid-template-columns: 1fr; gap: 30px; }
-        @media (min-width: 768px) { .learn-grid { grid-template-columns: 1fr 1fr; } }
-        
-        .learn-card { background: #fff; padding: 35px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.02); border-left: 5px solid var(--pale-red); position: relative; }
-        .learn-card h4 { font-size: 1.3rem; color: var(--dark-gray); margin-bottom: 15px; font-weight: 700; line-height: 1.4; }
-        .learn-card p { font-size: 0.98rem; color: #555; line-height: 1.7; }
-
-        /* Sleek Corporate Footer */
-        footer {
-            background-color: #F0EAE5;
-            color: var(--dark-gray);
-            text-align: center;
-            padding: 25px 20px;
+        .tagline {
+            color: var(--accent-primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
             font-size: 0.9rem;
-            border-top: 1px solid #E5DFDA;
+            font-weight: 700;
+            margin-bottom: 12px;
         }
-        .footer-contacts {
-            margin-top: 8px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-            flex-wrap: wrap;
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin: 0 0 20px 0;
+            color: var(--text-main);
+        }
+
+        p.description {
+            font-size: 1.15rem;
+            line-height: 1.6;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+        }
+
+        .form-card {
+            background-color: #F9F9F9;
+            border: 1px solid #EEEEEE;
+            border-radius: 16px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-card h2 {
+            font-size: 1.5rem;
+            margin-top: 0;
+            margin-bottom: 25px;
+            color: var(--text-main);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--flora-dark-gray);
+            margin-bottom: 8px;
             font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
-        .footer-contacts a {
-            color: var(--desaturated-red);
-            text-decoration: none;
-            transition: color 0.3s;
+
+        input[type="text"],
+        input[type="email"] {
+            width: 100%;
+            padding: 14px;
+            box-sizing: border-box;
+            background-color: #FFFFFF;
+            border: 2px solid #EEEEEE;
+            border-radius: 8px;
+            color: var(--text-main);
+            font-size: 1rem;
+            transition: all 0.2s;
         }
-        .footer-contacts a:hover {
-            color: var(--dark-gray);
+
+        input:focus {
+            outline: none;
+            border-color: var(--flora-pale-orange);
         }
-        .divider {
-            color: #CFC5BC;
+
+        .cta-btn {
+            width: 100%;
+            background-color: var(--accent-primary);
+            color: #FFFFFF;
+            border: none;
+            padding: 16px;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 10px;
+        }
+
+        .cta-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        footer {
+            margin-top: 50px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
         }
     </style>
 </head>
 <body>
 
-    <div class="timer-banner">
-        <span>⏰ Masterclass Starts In:</span>
-        <span class="timer-display" id="countdown">Loading...</span>
-    </div>
-
     <div class="container">
-        <header>
-            <p class="tagline">Flora Mutahi Exclusive Live Masterclass</p>
-            <h1>"Revenue is Vanity, Profit is Sanity, but CASH is King"</h1>
-        </header>
+        <div class="header-gradient-bar"></div>
+        <div class="tagline">Exclusive Live Masterclass</div>
+        <h1>Revenue Is Vanity</h1>
+        <p class="description">
+            Join Flora Mutahi for an elite strategic session breaking down the core principles of sustainable business growth, scaling frameworks, and metrics that actually matter.
+        </p>
 
-        <div class="grid">
-            <div>
-                <div class="video-box">
-         </div>
-            </div>
-
-            <div>
-                <div class="form-box">
-                    <h3>Secure Your Seat</h3>
-                    <form id="registration-form">
-                        <input type="text" id="first-name" placeholder="First Name" required>
-                        <input type="text" id="last-name" placeholder="Last Name" required>
-                        <input type="email" id="user-email" placeholder="Email Address" required>
-                        <button type="submit" id="submit-btn">Register Now</button>
-                    </form>
-                    <div id="status-message"></div>
-                    <div class="meta-info">
-                        Thursday, 16th July 2026 | 4:00 PM EAT
-                    </div>
+        <div class="form-card">
+            <h2>Secure Your Virtual Seat</h2>
+            <form action="#" method="POST">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your full name" required>
                 </div>
-            </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                </div>
+                <button type="submit" class="cta-btn">Register Instantly</button>
+            </form>
         </div>
 
-        <section class="learn-section">
-            <h2>What You Will Learn</h2>
-            <div class="learn-grid">
-                
-                <div class="learn-card">
-                    <h4>"You do not own your biggest client — they own you."</h4>
-                    <p>Relying on a single major client to keep your doors open is one of the most dangerous positions an entrepreneur can be in. If that single account experiences an internal shift or delays a routine payment, your entire business infrastructure can collapse overnight. True enterprise stability means diversifying your reach so no external corporate entity commands your ultimate runway destiny. Flora will map out exactly how to break free from high concentration vulnerability and regain financial independence.</p>
-                </div>
-
-                <div class="learn-card">
-                    <h4>The Cash Conversion Cycle Illusion</h4>
-                    <p>High sales metrics can easily mask a quiet operational hemorrhage happening just beneath the surface. If it takes your business 90 days to collect cash from customers but your operational bills are due every 30 days, you are structurally borrowing against time. This core segment unpacks the exact math behind how fast cash leaves your bank vs. how sluggishly it returns. Learn to optimize your collection periods so your expansion plans are entirely self sustaining.</p>
-                </div>
-
-                <div class="learn-card">
-                    <h4>The Scaling Trap and Operational Fatigue</h4>
-                    <p>Many founders mistake growing a team and increasing overhead for true business scaling. Without a rigorous framework, rapid expansion merely amplifies existing structural inefficiencies and drains your liquid capital faster. True corporate optimization requires building systems that can handle increased volume without exponentially increasing structural strain. Discover how to transition smoothly away from high stress operational fatigue into a structured growth approach.</p>
-                </div>
-
-                <div class="learn-card">
-                    <h4>Predicting Your Cash Runway 90 Days Out</h4>
-                    <p>Waiting for your monthly bank statements to tell you your fiscal health means you are leading your business through a rearview mirror. Successful leadership relies on proactive forecasting tools that spotlight upcoming cash dips long before they disrupt daily operations. This final pillar introduces basic forward looking data tracking habits that protect your corporate financial health. Learn to identify subtle market alerts so you can pivot safely during volatile business cycles.</p>
-                </div>
-
-            </div>
-        </section>
+        <footer>
+            &copy; 2026 Flora Mutahi. All rights reserved.
+        </footer>
     </div>
 
-    <footer>
-        <div>© 2026 Flora Mutahi. All Rights Reserved.</div>
-        <div class="footer-contacts">
-            <span>📞 Phone: <a href="tel:+254799883040">+254 799 883 040</a></span>
-            <span class="divider">|</span>
-            <span>✉️ Email: <a href="mailto:hello@floramutahi.com">hello@floramutahi.com</a></span>
-        </div>
-    </footer>
-
-    <script>
-        // Your live deployed Google Script Web App link
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzaBR9MUdpuPcYQavOBK8QiMaeDvF9fBS4V3ZygzcBsdVHx2FF96NNLTf8KeXuKPuny/exec';
-
-        // COUNTDOWN TIMER SCRIPT (Set to July 16, 2026 16:00 EAT)
-        const targetDate = new Date(Date.UTC(2026, 6, 16, 13, 0, 0)).getTime();
-
-        const timerInterval = setInterval(function() {
-            const now = new Date().getTime();
-            const difference = targetDate - now;
-
-            if (difference < 0) {
-                clearInterval(timerInterval);
-                document.getElementById("countdown").innerText = "Happening Live Now!";
-                return;
-            }
-
-            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-            document.getElementById("countdown").innerText = 
-                days + "d " + hours + "h " + minutes + "m " + seconds + "s";
-        }, 1000);
-
-        // DATA SUBMISSION SCRIPT
-        document.getElementById('registration-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const firstName = document.getElementById('first-name').value;
-            const lastName = document.getElementById('last-name').value;
-            const email = document.getElementById('user-email').value;
-            const submitBtn = document.getElementById('submit-btn');
-            
-            submitBtn.disabled = true;
-            submitBtn.innerText = 'Registering...';
-
-            const payload = {
-                name: firstName + " " + lastName, 
-                email: email
-            };
-
-            fetch(GOOGLE_SCRIPT_URL, {
-                method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            })
-            .then(() => {
-                document.getElementById('status-message').innerText = '🎉 Your seat is successfully locked in!';
-                submitBtn.innerText = 'Registration Complete';
-            })
-            .catch(() => {
-                submitBtn.disabled = false;
-                submitBtn.innerText = 'Register Now';
-                document.getElementById('status-message').innerText = 'Connection error. Please try again.';
-            });
-        });
-    </script>
 </body>
 </html>
