@@ -11,7 +11,9 @@
             --flora-pale-orange: #FFDAB7;
             --flora-desaturated-dark-red: #9A6C6A;
             --flora-dark-gray: #252525;
-            --rose-gold-gradient: linear-gradient(180deg, #FFDAB7 0%, #FF9CA9 100%);
+            
+            /* Gradient defined in Flora Brand Guidelines */
+            --rose-gold-gradient: linear-gradient(135deg, var(--flora-pale-orange) 0%, var(--flora-pale-red) 100%);
         }
 
         * { box-sizing: border-box; }
@@ -21,16 +23,16 @@
             padding: 0;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
             min-height: 100vh;
-            color: #FFFFFF;
+            color: var(--flora-dark-gray); /* High contrast dark text for light background */
             display: flex;
             justify-content: center;
             align-items: center;
             position: relative;
             overflow-x: hidden;
-            background-color: var(--flora-dark-gray);
+            background: var(--rose-gold-gradient); /* Light, beautiful background */
         }
 
-        /* Background Image Carousel Layer */
+        /* Background Image Carousel Layer with lower opacity to blend into the gradient */
         .carousel-bg {
             position: fixed;
             top: 0;
@@ -40,10 +42,11 @@
             z-index: -2;
             background-size: cover;
             background-position: center;
+            opacity: 0.15; /* Softly blends Flora's imagery into the background */
             animation: backgroundFade 18s infinite;
         }
 
-        /* Dark overlay to ensure text readability over photos */
+        /* Smooth gradient overlay to unify everything */
         .overlay {
             position: fixed;
             top: 0;
@@ -51,10 +54,10 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            background: linear-gradient(135deg, rgba(37,37,37,0.95) 0%, rgba(37,37,37,0.85) 100%);
+            background: linear-gradient(135deg, rgba(255, 218, 183, 0.85) 0%, rgba(255, 156, 169, 0.85) 100%);
         }
 
-        /* Background Fade Animation referencing the doubled .jpg.jpg file names */
+        /* Background Fade Animation using the .jpg.jpg file names */
         @keyframes backgroundFade {
             0%, 100% { background-image: url('flora1.jpg.jpg'); }
             33% { background-image: url('flora2.jpg.jpg'); }
@@ -76,16 +79,16 @@
             text-align: left;
         }
 
-        .header-gradient-bar {
+        .header-brand-bar {
             width: 60px;
             height: 6px;
-            background: var(--rose-gold-gradient);
+            background-color: var(--flora-desaturated-dark-red);
             border-radius: 3px;
             margin-bottom: 20px;
         }
 
         .tagline {
-            color: var(--flora-pale-orange);
+            color: var(--flora-desaturated-dark-red);
             text-transform: uppercase;
             letter-spacing: 2px;
             font-size: 0.9rem;
@@ -94,17 +97,18 @@
         }
 
         h1 {
-            font-size: 3.2rem;
+            font-size: 3.5rem;
             font-weight: 800;
             line-height: 1.1;
             margin: 0 0 20px 0;
-            letter-spacing: -1px;
+            letter-spacing: -1.5px;
+            color: var(--flora-dark-gray);
         }
 
         .description {
-            font-size: 1.15rem;
+            font-size: 1.2rem;
             line-height: 1.6;
-            color: #E0E0E0;
+            color: rgba(37, 37, 37, 0.85);
             margin-bottom: 35px;
         }
 
@@ -117,24 +121,26 @@
         }
 
         .pillar-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-left: 3px solid var(--flora-pale-red);
-            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.45); /* Soft light cards */
+            border-left: 4px solid var(--flora-desaturated-dark-red);
+            padding: 18px 20px;
             border-radius: 0 8px 8px 0;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
         }
 
         .pillar-card h3 {
             margin: 0 0 5px 0;
-            font-size: 1rem;
-            color: var(--flora-pale-orange);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            font-size: 1.05rem;
+            color: var(--flora-dark-gray);
+            font-weight: 700;
+            letter-spacing: 0.3px;
         }
 
         .pillar-card p {
             margin: 0;
-            font-size: 0.85rem;
-            color: #CCCCCC;
+            font-size: 0.88rem;
+            color: rgba(37, 37, 37, 0.75);
             line-height: 1.4;
         }
 
@@ -146,44 +152,46 @@
         }
 
         .time-block {
-            background: rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.1);
-            padding: 10px 15px;
-            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            padding: 12px 18px;
+            border-radius: 8px;
             text-align: center;
-            min-width: 70px;
+            min-width: 75px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
         }
 
         .time-block span {
             display: block;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 700;
-            color: var(--flora-pale-red);
+            color: var(--flora-desaturated-dark-red);
         }
 
         .time-block label {
             font-size: 0.7rem;
             text-transform: uppercase;
-            color: #999;
+            color: rgba(37, 37, 37, 0.6);
+            font-weight: 600;
             letter-spacing: 0.5px;
         }
 
-        /* Right Column: Premium Registration Form Card */
+        /* Right Column: Crisp White Registration Card */
         .form-card {
-            background-color: rgba(255, 255, 255, 0.07);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
+            background-color: #FFFFFF;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
             padding: 45px 35px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 20px 40px rgba(154, 108, 106, 0.15);
         }
 
         .form-card h2 {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             margin: 0 0 25px 0;
             text-align: center;
             letter-spacing: 0.5px;
+            color: var(--flora-dark-gray);
+            font-weight: 700;
         }
 
         .form-group {
@@ -194,9 +202,9 @@
         .form-group label {
             display: block;
             font-size: 0.8rem;
-            color: var(--flora-pale-orange);
+            color: var(--flora-desaturated-dark-red);
             margin-bottom: 8px;
-            font-weight: 600;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
@@ -205,10 +213,10 @@
         input[type="email"] {
             width: 100%;
             padding: 14px;
-            background-color: rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background-color: #FAFAFA;
+            border: 2px solid #EEEEEE;
             border-radius: 8px;
-            color: #FFFFFF;
+            color: var(--flora-dark-gray);
             font-size: 1rem;
             transition: all 0.2s;
         }
@@ -216,7 +224,8 @@
         input:focus {
             outline: none;
             border-color: var(--flora-pale-red);
-            background-color: rgba(0, 0, 0, 0.6);
+            background-color: #FFFFFF;
+            box-shadow: 0 0 0 3px rgba(255, 156, 169, 0.2);
         }
 
         .cta-btn {
@@ -233,20 +242,22 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-top: 10px;
-            box-shadow: 0 4px 15px rgba(154, 108, 106, 0.3);
+            box-shadow: 0 6px 20px rgba(154, 108, 106, 0.3);
         }
 
         .cta-btn:hover {
-            background-color: #aa7a78;
+            background-color: var(--flora-dark-gray);
             transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(37, 37, 37, 0.2);
         }
 
         footer {
             grid-column: span 2;
             text-align: center;
-            margin-top: 30px;
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.3);
+            margin-top: 40px;
+            font-size: 0.85rem;
+            color: rgba(37, 37, 37, 0.6);
+            font-weight: 500;
         }
 
         /* Responsive Layout for Tablets/Mobile */
@@ -256,7 +267,7 @@
                 gap: 40px;
                 margin: 20px auto;
             }
-            h1 { font-size: 2.5rem; }
+            h1 { font-size: 2.6rem; }
             .pillars-container { grid-template-columns: 1fr; gap: 15px; }
             footer { grid-column: span 1; }
         }
@@ -271,7 +282,7 @@
         
         <!-- Left Column: Value Copy & Framework Info -->
         <div class="info-column">
-            <div class="header-gradient-bar"></div>
+            <div class="header-brand-bar"></div>
             <div class="tagline">Exclusive Live Masterclass</div>
             <h1>Revenue Is Vanity</h1>
             <p class="description">
@@ -327,7 +338,7 @@
     </div>
 
     <script>
-        // Simple Target Countdown for July 16, 2026
+        // Target Countdown for July 16, 2026
         const targetDate = new Date("July 16, 2026 00:00:00").getTime();
 
         function updateTimer() {
