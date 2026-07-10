@@ -181,7 +181,7 @@
             background-color: #FFFFFF;
             border: 1px solid rgba(255, 255, 255, 0.8);
             border-radius: 20px;
-            padding: 45px 35px;
+            padding: 40px 35px;
             box-shadow: 0 20px 40px rgba(154, 108, 106, 0.15);
         }
 
@@ -195,7 +195,7 @@
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 18px;
             text-align: left;
         }
 
@@ -210,22 +210,75 @@
         }
 
         input[type="text"],
-        input[type="email"] {
+        input[type="email"],
+        select {
             width: 100%;
-            padding: 14px;
+            padding: 13px;
             background-color: #FAFAFA;
             border: 2px solid #EEEEEE;
             border-radius: 8px;
             color: var(--flora-dark-gray);
-            font-size: 1rem;
+            font-size: 0.95rem;
+            font-family: inherit;
             transition: all 0.2s;
         }
 
-        input:focus {
+        input:focus, select:focus {
             outline: none;
             border-color: var(--flora-pale-red);
             background-color: #FFFFFF;
             box-shadow: 0 0 0 3px rgba(255, 156, 169, 0.2);
+        }
+
+        /* Dropdown custom look */
+        select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239A6C6A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            background-size: 16px;
+            padding-right: 40px;
+        }
+
+        /* Hidden logic container */
+        .conditional-group {
+            display: none;
+            animation: fadeIn 0.3s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Checkbox Layout */
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-top: 15px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            margin-top: 3px;
+            accent-color: var(--flora-desaturated-dark-red);
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        .checkbox-group label {
+            font-size: 0.85rem;
+            color: var(--flora-dark-gray);
+            text-transform: none;
+            font-weight: 500;
+            line-height: 1.4;
+            letter-spacing: 0;
+            margin-bottom: 0;
+            cursor: pointer;
         }
 
         .cta-btn {
@@ -241,7 +294,7 @@
             transition: all 0.2s;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-top: 10px;
+            margin-top: 15px;
             box-shadow: 0 6px 20px rgba(154, 108, 106, 0.3);
         }
 
@@ -280,7 +333,6 @@
 
     <div class="main-wrapper">
         
-        <!-- Left Column: Value Copy & Framework Info -->
         <div class="info-column">
             <div class="header-brand-bar"></div>
             <div class="tagline">Exclusive Live Masterclass</div>
@@ -316,18 +368,46 @@
             </div>
         </div>
 
-        <!-- Right Column: Live Formspree Connected Registration Box -->
         <div class="form-card">
             <h2>Secure Your Virtual Seat</h2>
             <form action="https://formspree.io/f/mlgyylpg" method="POST">
+                
                 <div class="form-group">
                     <label for="name">Full Name</label>
                     <input type="text" id="name" name="name" placeholder="Enter your full name" required>
                 </div>
+
                 <div class="form-group">
                     <label for="email">Email Address</label>
                     <input type="email" id="email" name="email" placeholder="Enter your email address" required>
                 </div>
+
+                <div class="form-group">
+                    <label for="role">Professional Profile</label>
+                    <select id="role" name="professional_profile" onchange="toggleExperienceField()" required>
+                        <option value="" disabled selected>Select your profile...</option>
+                        <option value="Entrepreneur">Entrepreneur / Business Owner</option>
+                        <option value="Corporate Professional">Corporate Professional</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group conditional-group" id="experience-container">
+                    <label for="experience">Years as a Corporate Professional</label>
+                    <select id="experience" name="corporate_experience">
+                        <option value="" disabled selected>Select duration...</option>
+                        <option value="0-2 years">0 - 2 years</option>
+                        <option value="3-5 years">3 - 5 years</option>
+                        <option value="6-10 years">6 - 10 years</option>
+                        <option value="10+ years">10+ years</option>
+                    </select>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="consent" name="newsletter_consent" value="Yes" checked>
+                    <label for="consent">I agree to receive exclusive strategic insights and newsletter updates directly from Flora Mutahi.</label>
+                </div>
+
                 <button type="submit" class="cta-btn">Register Instantly</button>
             </form>
         </div>
@@ -357,6 +437,22 @@
         }
         setInterval(updateTimer, 1000);
         updateTimer();
+
+        // Conditional Logic for Form Fields
+        function toggleExperienceField() {
+            const roleSelect = document.getElementById("role");
+            const experienceContainer = document.getElementById("experience-container");
+            const experienceSelect = document.getElementById("experience");
+
+            if (roleSelect.value === "Corporate Professional") {
+                experienceContainer.style.display = "block";
+                experienceSelect.setAttribute("required", "required");
+            } else {
+                experienceContainer.style.display = "none";
+                experienceSelect.removeAttribute("required");
+                experienceSelect.value = ""; // Reset value if hidden
+            }
+        }
     </script>
 
 </body>
