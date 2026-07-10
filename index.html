@@ -241,7 +241,7 @@
             padding-right: 40px;
         }
 
-        /* Hidden logic container */
+        /* Hidden logic containers */
         .conditional-group {
             display: none;
             animation: fadeIn 0.3s ease forwards;
@@ -333,6 +333,7 @@
 
     <div class="main-wrapper">
         
+        <!-- Left Column: Value Copy & Framework Info -->
         <div class="info-column">
             <div class="header-brand-bar"></div>
             <div class="tagline">Exclusive Live Masterclass</div>
@@ -368,6 +369,7 @@
             </div>
         </div>
 
+        <!-- Right Column: Dual-Conditional Registration Box -->
         <div class="form-card">
             <h2>Secure Your Virtual Seat</h2>
             <form action="https://formspree.io/f/mlgyylpg" method="POST">
@@ -392,9 +394,10 @@
                     </select>
                 </div>
 
-                <div class="form-group conditional-group" id="experience-container">
-                    <label for="experience">Years as a Corporate Professional</label>
-                    <select id="experience" name="corporate_experience">
+                <!-- Conditional Field 1: Shows only for Corporate Professionals -->
+                <div class="form-group conditional-group" id="corporate-container">
+                    <label for="corporate_experience">Years as a Corporate Professional</label>
+                    <select id="corporate_experience" name="corporate_experience">
                         <option value="" disabled selected>Select duration...</option>
                         <option value="0-2 years">0 - 2 years</option>
                         <option value="3-5 years">3 - 5 years</option>
@@ -403,6 +406,19 @@
                     </select>
                 </div>
 
+                <!-- Conditional Field 2: Shows only for Entrepreneurs -->
+                <div class="form-group conditional-group" id="entrepreneur-container">
+                    <label for="business_experience">Years in Business</label>
+                    <select id="business_experience" name="years_in_business">
+                        <option value="" disabled selected>Select duration...</option>
+                        <option value="0-2 years">0 - 2 years</option>
+                        <option value="3-5 years">3 - 5 years</option>
+                        <option value="6-10 years">6 - 10 years</option>
+                        <option value="10+ years">10+ years</option>
+                    </select>
+                </div>
+
+                <!-- Newsletter Consent Checkbox -->
                 <div class="checkbox-group">
                     <input type="checkbox" id="consent" name="newsletter_consent" value="Yes" checked>
                     <label for="consent">I agree to receive exclusive strategic insights and newsletter updates directly from Flora Mutahi.</label>
@@ -438,19 +454,30 @@
         setInterval(updateTimer, 1000);
         updateTimer();
 
-        // Conditional Logic for Form Fields
+        // Dual Conditional Logic for Form Fields
         function toggleExperienceField() {
             const roleSelect = document.getElementById("role");
-            const experienceContainer = document.getElementById("experience-container");
-            const experienceSelect = document.getElementById("experience");
+            const corpContainer = document.getElementById("corporate-container");
+            const corpSelect = document.getElementById("corporate_experience");
+            const entContainer = document.getElementById("entrepreneur-container");
+            const entSelect = document.getElementById("business_experience");
 
+            // Reset options and hide everything first
+            corpContainer.style.display = "none";
+            corpSelect.removeAttribute("required");
+            corpSelect.value = "";
+
+            entContainer.style.display = "none";
+            entSelect.removeAttribute("required");
+            entSelect.value = "";
+
+            // Reveal and require fields dynamically based on selection
             if (roleSelect.value === "Corporate Professional") {
-                experienceContainer.style.display = "block";
-                experienceSelect.setAttribute("required", "required");
-            } else {
-                experienceContainer.style.display = "none";
-                experienceSelect.removeAttribute("required");
-                experienceSelect.value = ""; // Reset value if hidden
+                corpContainer.style.display = "block";
+                corpSelect.setAttribute("required", "required");
+            } else if (roleSelect.value === "Entrepreneur") {
+                entContainer.style.display = "block";
+                entSelect.setAttribute("required", "required");
             }
         }
     </script>
